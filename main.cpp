@@ -2,8 +2,8 @@
 #include <fstream>
 #include <cmath>
 #include <chrono>
-#include <array>
 #include <random>
+#include <array>
 #include <iostream>
 
 #define SEPARATOR ","
@@ -104,9 +104,7 @@ int main(int argc, char* argv[])
 	random_device device;
 	mt19937 generator(device());
 
-	array<float, 6> intervals{0.f, 10.f, 100.f, 1000.f, 1e6f, 1e9f};
-	array<float, 5> weights {1.f, 1.f, 1.f, 1.f, 1.f};
-	piecewise_constant_distribution<float> distr(intervals.begin(), intervals.end(), weights.begin());
+	lognormal_distribution<float> distr(log(1e6), log(1e4));
 
 	ofstream dataFile;
 	dataFile.open("testResults.csv");
